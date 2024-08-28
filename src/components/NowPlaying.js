@@ -14,13 +14,16 @@ import "../NowPlaying.css";
 function NowPlaying({ currentSong, songs, setCurrentSong }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [isMuted, setIsMuted] = useState(false); // Added state for mute
+  const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef(null);
+  const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
     if (!audioRef.current) {
       audioRef.current = new Audio(currentSong?.url);
     } else {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
       audioRef.current.src = currentSong?.url;
     }
 
@@ -28,27 +31,24 @@ function NowPlaying({ currentSong, songs, setCurrentSong }) {
       audioRef.current.play();
     }
 
-    return () => {
-      audioRef.current.pause();
-    };
-  }, [currentSong, isPlaying]);
-
-  useEffect(() => {
     const audio = audioRef.current;
 
     const updateProgress = () => {
       setProgress((audio.currentTime / audio.duration) * 100);
+      setCurrentTime(audio.currentTime);
     };
 
     audio.addEventListener("timeupdate", updateProgress);
+
     return () => {
       audio.removeEventListener("timeupdate", updateProgress);
+      audio.pause();
     };
-  }, []);
+  }, [currentSong]);
 
   useEffect(() => {
     const audio = audioRef.current;
-    audio.muted = isMuted; // Update mute state
+    audio.muted = isMuted;
   }, [isMuted]);
 
   const togglePlayPause = () => {
@@ -57,6 +57,7 @@ function NowPlaying({ currentSong, songs, setCurrentSong }) {
     if (isPlaying) {
       audio.pause();
     } else {
+      audio.currentTime = currentTime;
       audio.play();
     }
     setIsPlaying(!isPlaying);
@@ -67,12 +68,14 @@ function NowPlaying({ currentSong, songs, setCurrentSong }) {
       (e.nativeEvent.offsetX / e.target.offsetWidth) *
       audioRef.current.duration;
     audioRef.current.currentTime = seekTime;
+    setCurrentTime(seekTime);
   };
 
   const playNext = () => {
     const currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     const nextSong = songs[(currentIndex + 1) % songs.length];
     setCurrentSong(nextSong);
+    setCurrentTime(0);
   };
 
   const playPrevious = () => {
@@ -80,6 +83,7 @@ function NowPlaying({ currentSong, songs, setCurrentSong }) {
     const previousSong =
       songs[(currentIndex - 1 + songs.length) % songs.length];
     setCurrentSong(previousSong);
+    setCurrentTime(0);
   };
 
   const toggleMute = () => {
@@ -89,13 +93,11 @@ function NowPlaying({ currentSong, songs, setCurrentSong }) {
   return (
     <Card className="now-playing">
       <div className="card-content">
-        {/* Song Details */}
         <div className="song-details">
           <Card.Title className="song-title">{currentSong?.name}</Card.Title>
           <Card.Text className="artist-name">{currentSong?.artist}</Card.Text>
         </div>
 
-        {/* Image and Progress Bar */}
         <div className="image-progress">
           <Card.Img
             className="album-cover"
@@ -111,7 +113,6 @@ function NowPlaying({ currentSong, songs, setCurrentSong }) {
           </div>
         </div>
 
-        {/* Control Buttons */}
         <div className="controls">
           <button className="control-button side-control">
             <FaEllipsisH />
