@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Music Player UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://jazzy-mandazi-4601af.netlify.app/)
 
-## Available Scripts
+This is a Music Player UI built using React.js. The application interface matches the provided design and is fully responsive. It uses REST API to fetch the list of songs and provides functionalities such as searching, controlling music playback, tab switching, and more.
 
-In the project directory, you can run:
+## 🚀 Live Demo
 
-### `npm start`
+Check out the live demo [here](https://jazzy-mandazi-4601af.netlify.app/).
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 📑 Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Responsive Design**: The application is fully responsive. On smaller screens, the player component acts as the main interface with a menu button to show the list of songs.
+- **REST API Integration**: The application fetches data from the provided REST API to load the list of songs.
+- **Dynamic Background Gradient**: The background gradient color changes according to the cover image of the current song.
+- **Persistent Music Playback**: Music continues playing even if the user navigates to another browser tab.
+- **Fluid and Interactive UI**: Includes animations and transitions for a smooth and engaging user experience, such as list loading animations and background color transitions.
 
-### `npm test`
+## 🎯 Functionality
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Search**: Easily search through the list of songs.
+- **Music Control**: Play, pause, skip to the next or previous track.
+- **Tab Navigation**: Switch between different tabs like "For You" and "Top Tracks".
+- **Seeker Control**: Adjust the playback position using the seeker.
 
-### `npm run build`
+## 🛠️ Technologies Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React.js**: The core framework used to build the user interface.
+- **CSS/SCSS**: For styling the components and ensuring responsiveness.
+- **REST API**: Used to fetch song data.
+- **Animations/Transitions**: Implemented for fluid and interactive UI elements.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚙️ Setup Instructions
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository:**
 
-### `npm run eject`
+    ```bash
+    git clone (https://github.com/CodeAvk/Spotify_Music_Player.git)
+    cd Spotify_Music_Player
+    ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **Install dependencies:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    ```bash
+    npm install
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. **Run the application:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    ```bash
+    npm start
+    ```
 
-## Learn More
+4. **Build for production:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ```bash
+    npm run build
+    ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🌐 API Information
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **API Endpoint**: [https://cms.samespace.com/items/songs](https://cms.samespace.com/items/songs)
+- **Cover Image Fetching**: Use the `cover` key from the API response to fetch images using the URL format:
+  ```plaintext
+  https://cms.samespace.com/assets/{COVER_IMAGE_ID}
