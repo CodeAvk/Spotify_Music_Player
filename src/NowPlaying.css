@@ -1,0 +1,97 @@
+.now-playing {
+  background-color: transparent;
+  width: 350px;
+  height: 500px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.song-details {
+  text-align: left;
+  color: white;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.song-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.artist-name {
+  font-size: 14px;
+  color: #cccccc;
+}
+
+.image-progress {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.album-cover {
+  width: 400px;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0;
+}
+
+.control-button {
+  color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-button {
+  background-color: #444444;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.play-pause-button {
+  font-size: 30px;
+}
+
+.progress-wrapper {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* New styles for the progress bar */
+.progress {
+  height: 3px !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.progress-bar {
+  background-color: white !important;
+}
+
+.side-control {
+  width: 40px;
+  height: 40px;
+}
